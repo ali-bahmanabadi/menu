@@ -1,0 +1,42 @@
+.sidebar_wrapper {
+    width: 240px;
+    background-color: #dcdcdc;
+    border-radius: 15px 0 0 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+div {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: #3e3e3e;
+}
+
+.item {
+    color: #3e3e3e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+svg {
+    width: 20px;
+    margin-left: 10px;
+}
+
+.active {
+    color: purple;
+}

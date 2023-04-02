@@ -1,0 +1,23 @@
+.purple {
+    --bg-color: purple;
+}
+
+.blue {
+    --bg-color: blue;
+}
+
+.green {
+    --bg-color: green;
+}
+
+.yellow {
+    --bg-color: yellow;
+}
+
+.sm {
+    --font-size: 20px;
+}
+
+.lg {
+    --font-size: 40px;
+}
