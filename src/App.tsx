@@ -1,9 +1,10 @@
-import Footer from '@footer';
+// import Footer from '@footer';
 import './App.scss';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 
 import { BrowserRouter } from 'react-router-dom';
+import DataTable from './components/table/DataTable';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     <Sidebar />
                 </main>
                 {/* <Footer /> */}
+                <DataTable />
             </div>
         </BrowserRouter>
     );

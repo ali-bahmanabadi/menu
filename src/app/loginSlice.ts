@@ -47,7 +47,7 @@ const loginSlice = createSlice({
             })
             .addCase(fetchLogin.fulfilled, (state, action) => {
                 state.status = 'success';
-                state.data = action.payload;
+                // state.data = action.payload;
             })
             .addCase(fetchLogin.rejected, (state) => {
                 state.status = 'error';
