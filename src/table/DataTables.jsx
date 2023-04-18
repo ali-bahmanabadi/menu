@@ -10,28 +10,25 @@ import $ from 'jquery';
 import './css.css';
 
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 // componentDidMount => useEffect
 
 class Datatbales extends React.Component {
-    // State array variable to save and show data
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-        };
-    }
-    componentDidMount() {
-        //Get all users details in bootstrap table
-        // axios.post('https://jsonplaceholder.typicode.com/posts').then((res) => {
-        //     //Storing users detail in state array object
-        //     this.setState({ data: res.data });
-        // });
+    // const [modal, setModal] = React.useState(false);
+    // console.log(modal);
 
-        //initialize datatable
+    handler = () => {
+        console.log(true);
+    };
+    // this.state({
+
+    // })
+
+    componentDidMount() {
         $(document).ready(function () {
             setTimeout(function () {
-                $('#example').DataTable({
+                var table = $('#example').DataTable({
                     processing: true,
                     serverSide: true,
                     ajax: {
@@ -45,15 +42,51 @@ class Datatbales extends React.Component {
                         { data: 'office' },
                         { data: 'start_date' },
                         { data: 'salary' },
+                        {
+                            data: null,
+                            // render: () => `ali`,
+                        },
+                    ],
+                    columnDefs: [
+                        {
+                            targets: -1,
+                            // data: null,
+                            // defaultContent: '<button>Click!</button>',
+                            render: (data, type, row) => {
+                                return `
+                                        <button class="delete">Delete</button>
+                                        <button class="edit">edit</button>
+                                    `;
+                            },
+                            // createdCell: (td, cellData, rowData, row, col) =>
+                            //     React.ReactDOM.render(
+                            //         <a onClick={() => console.log('hello')}>
+                            //             <i className="icon-fontello-edit"></i>
+                            //         </a>,
+                            //         td
+                            //     ),
+                        },
                     ],
                     // paging: false,
                     retrieve: true,
                 });
+
+                $('#example tbody').on('click', '.delete', function () {
+                    var data = table.row($(this).parents('tr')).data();
+                    // alert(data[0] + "'s salary is: " + data[5]);
+                    console.log('delete: ', data.first_name);
+                });
+
+                $('#example tbody').on('click', '.edit', function () {
+                    var data = table.row($(this).parents('tr')).data();
+                    // alert(data[0] + "'s salary is: " + data[5]);
+                    console.log('edit: ', data);
+                });
             }, 1000);
         });
     }
+
     render() {
-        //Datatable HTML
         return (
             <div className="MainDiv">
                 <div className="jumbotron text-center">
@@ -73,6 +106,7 @@ class Datatbales extends React.Component {
                                 <th>Office</th>
                                 <th>Start date</th>
                                 <th>Salary</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
