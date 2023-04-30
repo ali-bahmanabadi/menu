@@ -25,9 +25,11 @@ const Header = () => {
         setShow(false);
     };
 
+
+
     return (
         <>
-            <header className={cx(style.header, colorVariable)}>
+            <header  className={cx(style.header, colorVariable)}>
                 <div className={style.menu_wrapper}>
                     <button
                         onClick={() => setShow(!show)}
