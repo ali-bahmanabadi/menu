@@ -1,3 +1,4 @@
+import * as React from 'react';
 // import Footer from '@footer';
 import './App.scss';
 import Header from './components/Header/Header';
@@ -15,6 +16,9 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import AutocompleteField from './Combo';
+import IntegrationNotistack, { MyApp } from './components/Snackbar/Snackbar';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { fetchLogin } from './app/loginSlice';
 
 const list = [
     {
@@ -41,6 +45,12 @@ function App() {
     // const [data, setData] = useState(0);
 
     // console.log(data);
+
+    const dispatch = useAppDispatch();
+
+    const selectLogin = useAppSelector((state) => state.login.data);
+
+    React.useEffect(() => {}, []);
 
     const userSchema = yup.object().shape({
         nameId: yup.number().required('bagh bagh'),
@@ -75,7 +85,7 @@ function App() {
         // console.log('formData', event.target[0].value);
         handleSubmit((d) => console.log(d));
     };
-
+    console.log(process.env);
     return (
         <BrowserRouter>
             <div className="App">
@@ -83,6 +93,9 @@ function App() {
                 <main>
                     <Sidebar />
                 </main>
+                <MyApp />
+                <br />
+                <button onClick={() => dispatch(fetchLogin())}>get data</button>
                 <form onSubmit={handleSubmit((d) => console.log(d))}>
                     {/* <Controller
                         name="name"

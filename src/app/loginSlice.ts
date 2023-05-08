@@ -1,20 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-// import axios from 'axios';
+import axios from 'axios';
 import { RootState } from './store';
 
-export const fetchLogin = createAsyncThunk('login/fetchLogin', async () => {
-    // const response = await axios.get('http://localhost:5000/login');
-    // return response.data;
-});
+import { toast } from 'react-toastify';
 
-export const setStatus = createAsyncThunk(
-    'login/setStatus',
-    async (data: ILoginData) => {
-        // const { status, userId } = data
-        // await axios.patch('http://localhost:5000/login', data);
-        return data;
-    }
-);
+export const fetchLogin = createAsyncThunk('login/fetchLogin', async () => {
+    const response = await axios.get(
+        'https://jsonplaceholder.typ5icode.com/posts'
+    );
+    return response.data;
+});
 
 export interface ILoginData {
     position?: string;
@@ -44,16 +39,21 @@ const loginSlice = createSlice({
         builder
             .addCase(fetchLogin.pending, (state) => {
                 state.status = 'loading';
+                toast.info(
+                    'info Notification info Notificationinfo Notification!'
+                );
             })
             .addCase(fetchLogin.fulfilled, (state, action) => {
                 state.status = 'success';
-                // state.data = action.payload;
+                console.log(action.payload);
+
+                state.data = action.payload;
+
+                toast.success('Success Notification !');
             })
             .addCase(fetchLogin.rejected, (state) => {
                 state.status = 'error';
-            })
-            .addCase(setStatus.fulfilled, (state, action) => {
-                Object.assign(state.data, action.payload);
+                toast.error('error Notification !');
             });
     },
 });
