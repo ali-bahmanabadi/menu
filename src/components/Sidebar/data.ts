@@ -4,11 +4,13 @@ export const data = [
         id: 1,
         link: '/home',
         nodes: null,
+        parentId: null,
     },
     {
         title: 'اموزش',
         id: 2,
         link: null,
+        parentId: null,
         nodes: [
             {
                 title: 'عقیدتی',
@@ -17,38 +19,38 @@ export const data = [
                 nodes: [
                     {
                         title: 'ارداره عقیدتی',
-                        id: 3,
+                        id: 4,
                         parentId: 3,
                         nodes: [
                             {
                                 title: 'هییت ریسه',
-                                id: 4,
-                                parentId: 3,
+                                id: 5,
+                                parentId: 4,
                                 nodes: null,
                             },
                             {
                                 title: 'بازرسی',
-                                id: 4,
-                                parentId: 3,
+                                id: 6,
+                                parentId: 4,
                                 nodes: null,
                             },
                         ],
                     },
                     {
                         title: 'ستاد عقیدتی',
-                        id: 5,
+                        id: 7,
                         parentId: 3,
                         nodes: [
                             {
                                 title: 'فاوا',
-                                id: 6,
-                                ParentId: 5,
+                                id: 8,
+                                ParentId: 7,
                                 nodes: null,
                             },
                             {
                                 title: 'اجا',
-                                id: 6,
-                                ParentId: 5,
+                                id: 9,
+                                ParentId: 7,
                                 nodes: null,
                             },
                         ],
@@ -57,55 +59,55 @@ export const data = [
             },
             {
                 title: 'حفاظت',
-                id: 7,
+                id: 10,
                 parentId: 2,
                 nodes: [
                     {
                         title: 'حفاظت بالا',
-                        id: 8,
-                        parentId: 7,
+                        id: 11,
+                        parentId: 10,
                         nodes: [
                             {
                                 title: 'ساختمان یک',
-                                id: 9,
-                                parentId: 8,
+                                id: 12,
+                                parentId: 11,
                                 nodes: null,
                             },
                             {
                                 title: 'ساختمان دو',
-                                id: 10,
-                                parentId: 8,
+                                id: 13,
+                                parentId: 11,
                                 nodes: null,
                             },
                             {
                                 title: 'ساختمان سه',
-                                id: 11,
-                                parentId: 8,
+                                id: 14,
+                                parentId: 11,
                                 nodes: null,
                             },
                         ],
                     },
                     {
                         title: 'حفاظت پایین',
-                        id: 12,
-                        parentId: 7,
+                        id: 15,
+                        parentId: 10,
                         nodes: [
                             {
                                 title: 'ساختمان یک',
-                                id: 13,
-                                parentId: 12,
+                                id: 16,
+                                parentId: 15,
                                 nodes: null,
                             },
                             {
                                 title: 'ساختمان دو',
-                                id: 14,
-                                parentId: 12,
+                                id: 17,
+                                parentId: 15,
                                 nodes: null,
                             },
                             {
                                 title: 'ساختمان سه',
-                                id: 15,
-                                parentId: 12,
+                                id: 18,
+                                parentId: 15,
                                 nodes: null,
                             },
                         ],

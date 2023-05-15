@@ -19,6 +19,7 @@ root.render(
         <Provider store={store}>
             <IntegrationNotistack>
                 <ToastContainer />
+                url
                 <App />
             </IntegrationNotistack>
         </Provider>

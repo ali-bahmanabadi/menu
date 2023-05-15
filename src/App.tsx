@@ -4,7 +4,7 @@ import './App.scss';
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import DataTable from './components/table/DataTable';
 import ComboBox from './components/combo';
 
@@ -12,13 +12,15 @@ import { JSXElementConstructor, ReactElement, useState } from 'react';
 
 // import { userSchema } from './components/validation';
 
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import AutocompleteField from './Combo';
 import IntegrationNotistack, { MyApp } from './components/Snackbar/Snackbar';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { fetchLogin } from './app/loginSlice';
+import Ali from './components/Ali/Ali';
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 
 const list = [
     {
@@ -53,8 +55,8 @@ function App() {
     React.useEffect(() => {}, []);
 
     const userSchema = yup.object().shape({
-        nameId: yup.number().required('bagh bagh'),
-        age: yup.number().required('yeee').min(1, 'miiiin'),
+        // nameId: yup.number().required('bagh bagh'),
+        // age: yup.number().required('yeee').min(1, 'miiiin'),
     });
 
     const {
@@ -64,6 +66,9 @@ function App() {
         // formState: { errors },
     } = useForm({
         resolver: yupResolver(userSchema),
+        defaultValues: {
+            type: 'other',
+        },
     });
 
     const handler = (a: any, b: any, c: any, name: any) => {
@@ -74,8 +79,6 @@ function App() {
         // });
     };
 
-    // console.log(errors);
-
     const onSubmit = (event: any) => {
         event.preventDefault();
         let formData = {
@@ -85,7 +88,7 @@ function App() {
         // console.log('formData', event.target[0].value);
         handleSubmit((d) => console.log(d));
     };
-    console.log(process.env);
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -93,76 +96,65 @@ function App() {
                 <main>
                     <Sidebar />
                 </main>
-                <MyApp />
-                <br />
-                <button onClick={() => dispatch(fetchLogin())}>get data</button>
-                <form onSubmit={handleSubmit((d) => console.log(d))}>
-                    {/* <Controller
-                        name="name"
-                        as={
-                            <Autocomplete
-                                value={list.find((item) => data === item.id)}
-                                onChange={(event: any, newValue: any) => {
-                                    setData(newValue ? newValue.id : null);
-                                }}
-                                disablePortal
-                                options={list}
-                                sx={{ width: 300 }}
-                                renderInput={(params) => (
-                                    <TextField {...params} />
-                                )}
-                            />
-                        }
-                        onChange={() => ''}
+                <a href="#page=create">ff</a>
+                <button onClick={() => (window.location.hash = 'ali')}>
+                    hash
+                </button>
+                <Ali />
+                <form action="" onSubmit={handleSubmit((d) => console.log(d))}>
+                    <Controller
                         control={control}
-                    /> */}
-
-                    {/* <Controller
-                        name={'name'}
-                        control={control}
-                        render={({ field }) => {
-                            const { onChange, value } = field;
-                            // console.log(value);
-
-                            return (
-                                <Autocomplete
-                                    value={
-                                        value
-                                            ? list.find(
-                                                  (item) => data === item.id
-                                              ) ?? null
-                                            : null
-                                    }
-                                    onChange={(event: any, newValue: any) => {
-                                        onChange(newValue ? newValue.id : null);
-                                    }}
-                                    // disablePortal
-                                    options={list}
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) => (
-                                        <TextField {...params} />
-                                    )}
+                        name="type"
+                        // defaultValue=""
+                        render={({ field: { onChange, value } }) => (
+                            <RadioGroup
+                                // {...field}
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                name="radio-buttons-group"
+                                onChange={(event, value) => onChange(value)}
+                                value={value}
+                            >
+                                <FormControlLabel
+                                    value="female"
+                                    control={<Radio />}
+                                    label="Female"
                                 />
-                            );
-                        }}
-                    /> */}
+                                <FormControlLabel
+                                    value="male"
+                                    control={<Radio />}
+                                    label="Male"
+                                />
+                                <FormControlLabel
+                                    value="other"
+                                    control={<Radio />}
+                                    label="Other"
+                                />
+                            </RadioGroup>
 
-                    <AutocompleteField
-                        name={'nameId'}
-                        options={list}
-                        control={control}
-                        placeholder={'enter name'}
-                        dValue={1}
-                    />
-                    <AutocompleteField
-                        name={'age'}
-                        options={ages}
-                        control={control}
-                        placeholder={'enter age'}
-                        dValue={200}
-                    />
+                            // <IonRadioGroup
+                            //     value={value}
+                            //     onIonChange={({ detail: { value } }) =>
+                            //         onChange(value)
+                            //     }
+                            // >
+                            //     <IonItem>
+                            //         <IonLabel>Type 2</IonLabel>
+                            //         <IonRadio value="2" slot="start" />
+                            //     </IonItem>
 
-                    <input type="submit" />
+                            //     <IonItem>
+                            //         <IonLabel>Type 4</IonLabel>
+                            //         <IonRadio slot="start" value="4" />
+                            //     </IonItem>
+
+                            //     <IonItem>
+                            //         <IonLabel>Type 6</IonLabel>
+                            //         <IonRadio slot="start" value="6" />
+                            //     </IonItem>
+                            // </IonRadioGroup>
+                        )}
+                    />
+                    <input type="submit" value="submit" />
                 </form>
             </div>
         </BrowserRouter>

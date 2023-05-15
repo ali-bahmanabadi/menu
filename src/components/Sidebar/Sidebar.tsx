@@ -8,6 +8,7 @@ import HomeIcon from './assets/icon/HomeIcon';
 
 const Sidebar = () => {
     const [active, setActive] = useState(Number);
+    console.log(data);
 
     const { pathname } = useLocation();
     // console.log(pathname);
